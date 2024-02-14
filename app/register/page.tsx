@@ -3,23 +3,40 @@
  * @see https://v0.dev/t/KZ6UbFWp1LX
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { DropdownMenuTrigger, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenu,
+} from "@/components/ui/dropdown-menu";
+
+import Link from "next/link";
+import { HomeIcon } from "../ballot/page";
 
 export default function Component() {
   return (
     <div className="mx-auto max-w-3xl space-y-8">
+      <Link href="/">
+        <HomeIcon className="h-6 w-6 text-red-900" />
+      </Link>
       <div className="space-y-2 text-center">
         <h1 className="text-4xl font-bold">Register</h1>
-        <p className="text-gray-500 dark:text-gray-400">Enter your information to create an account</p>
+        <p className="text-gray-500 dark:text-gray-400">
+          Enter your information to create an account
+        </p>
       </div>
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="first-name">First name</Label>
-            <Input id="first-name" placeholder="Enter your first name" required />
+            <Input
+              id="first-name"
+              placeholder="Enter your first name"
+              required
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="last-name">Last name</Label>
@@ -32,7 +49,12 @@ export default function Component() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" placeholder="Enter your email" required type="email" />
+          <Input
+            id="email"
+            placeholder="Enter your email"
+            required
+            type="email"
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="province">Province</Label>
@@ -56,6 +78,5 @@ export default function Component() {
         <Button className="w-full">Register</Button>
       </div>
     </div>
-  )
+  );
 }
-
