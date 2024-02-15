@@ -66,7 +66,7 @@ export default function Component() {
                         alt="User"
                         className="rounded-full object-cover border border-gray-200"
                         height="480"
-                        src="/placeholder.svg"
+                        src="/ab.png"
                         style={{
                           aspectRatio: "480/480",
                           objectFit: "cover",
@@ -98,7 +98,7 @@ export default function Component() {
                         alt="User"
                         className="rounded-full object-cover border border-gray-200"
                         height="480"
-                        src="/placeholder.svg"
+                        src="/gp.png"
                         style={{
                           aspectRatio: "480/480",
                           objectFit: "cover",
@@ -131,17 +131,24 @@ export default function Component() {
                         alt="User"
                         className="rounded-full object-cover border border-gray-200"
                         height="480"
-                        src="/placeholder.svg"
+                        src="/ps.png"
                         style={{
                           aspectRatio: "480/480",
                           objectFit: "cover",
                         }}
                         width="480"
                       />
-                      <h3 className="font-semibold text-lg">Alex Johnson</h3>
+                      <h3 className="font-semibold text-lg">
+                        Prabowo Subianto - Advanced Indonesia Coalition
+                      </h3>
                       <p className="text-sm text-center">
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        He is a 72-year-old seasoned leader, who brings a wealth
+                        of experience, having served as a military general,
+                        defense minister, and a two-time presidential candidate.
+                        Known for his commitment to national unity, economic
+                        prosperity, and environmental sustainability. He
+                        envisions a technologically advanced and socially
+                        inclusive Indonesia
                       </p>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -152,9 +159,51 @@ export default function Component() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
                           <ul className="text-sm text-left">
-                            <li>Bullet point 1</li>
-                            <li>Bullet point 2</li>
-                            <li>Bullet point 3</li>
+                            <li>
+                              <b>National Unity and Stability:</b> Prabowo
+                              Subianto's manifesto emphasizes the importance of
+                              national unity and stability, pledging to work
+                              towards a cohesive Indonesia that celebrates its
+                              diversity while ensuring a stable political and
+                              economic environment.
+                            </li>
+                            <li>
+                              <b>Economic Prosperity:</b> The Advanced Indonesia
+                              Coalition candidate focuses on economic growth and
+                              prosperity. The manifesto outlines plans for job
+                              creation, attracting investments, and fostering
+                              entrepreneurship to boost the nation's economy.
+                            </li>
+                            <li>
+                              <b>Social Welfare Programs:</b> Mr. Prabowo
+                              promises comprehensive social welfare programs
+                              aimed at improving the well-being of citizens.
+                              This includes initiatives for healthcare
+                              accessibility, education reforms, and poverty
+                              alleviation measures.
+                            </li>
+                            <li>
+                              <b>Environmental Sustainability:</b> The manifesto
+                              highlights a commitment to environmental
+                              sustainability, advocating for responsible
+                              policies to address climate change, preserve
+                              natural resources, and promote eco-friendly
+                              practices.
+                            </li>
+                            <li>
+                              <b>Infrastructure Development:</b> Prioritizing
+                              infrastructure, the candidate promises strategic
+                              development projects to enhance connectivity,
+                              transportation, and overall infrastructure,
+                              contributing to regional and national progress.
+                            </li>
+                            <li>
+                              <b>Democratic Values:</b> Mr. Prabowo reaffirms a
+                              commitment to democratic values, ensuring the
+                              protection of individual rights, freedom of
+                              expression, and the democratic principles that
+                              underpin the nation's governance.
+                            </li>
                           </ul>
                         </DropdownMenuContent>
                       </DropdownMenu>
