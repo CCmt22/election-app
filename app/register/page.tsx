@@ -27,7 +27,9 @@ export default function Component() {
 
   const isRegistrationDisabled =
     Object.values(formData).some((value) => value.trim() === "") ||
-    Object.values(errors).some((error) => error !== "");
+    Object.values(errors).some((error) => error !== "") ||
+    formData.idNumber.length < 12 ||
+    formData.password !== formData.confirmPassword;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,6 +42,10 @@ export default function Component() {
     setErrors({
       ...errors,
       [name]: value.trim() === "" ? `${name} is required` : "",
+      idNumber:
+        name === "idNumber" && (value.length < 12 || isNaN(value))
+          ? "ID number must be at least 12 digits and contain only numbers"
+          : "",
     });
   };
 
@@ -172,7 +178,13 @@ export default function Component() {
                 />
                 <span className="error">{errors.confirmPassword}</span>
 
-                <Button></Button>
+                <Button
+                  className="w-full"
+                  disabled={isRegistrationDisabled}
+                  onClick={handleSubmit}
+                >
+                  Register
+                </Button>
               </div>
             </div>
           </div>
