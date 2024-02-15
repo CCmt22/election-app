@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/Wr6CKYHrMNv
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+"use client";
 import {
   CardTitle,
   CardDescription,
@@ -15,10 +11,23 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HomeIcon } from "../ballot/page";
+import { useState } from "react";
 
 export default function Component() {
-  return;
-  <>
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isLoginDisabled = email.trim() === "" || password.trim() === "";
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  return (
     <div
       className="bg-cover bg-center bg-no-repeat"
       style={{
@@ -27,9 +36,11 @@ export default function Component() {
       }}
     >
       <div className="h-screen flex items-center justify-center">
-        <Link href="/">
-          <HomeIcon className="h-6 w-6 text-red-900" />
-        </Link>
+        <div className="absolute top-4 right-4">
+          <Link href="/">
+            <HomeIcon className="h-6 w-6 text-red-900" />
+          </Link>
+        </div>
         <Card className="w-full max-w-md p-6 bg-slate-200">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold">Login</CardTitle>
@@ -46,6 +57,7 @@ export default function Component() {
                   placeholder="m@example.com"
                   required
                   type="email"
+                  onChange={handleEmailChange}
                 />
               </div>
               <div className="space-y-2">
@@ -58,15 +70,28 @@ export default function Component() {
                     Forgot your password?
                   </Link>
                 </div>
-                <Input id="password" required type="password" />
+                <Input
+                  id="password"
+                  required
+                  type="password"
+                  onChange={handlePasswordChange}
+                />
               </div>
-              <Button className="w-full" type="submit">
-                Login
+              <Button
+                className={`w-full ${
+                  isLoginDisabled ? "bg-gray-500" : "bg-black"
+                } text-white`}
+                type="submit"
+                disabled={isLoginDisabled}
+              >
+                <Link className="underline" href="/ballot">
+                  Login
+                </Link>
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
               Don't have an account?
-              <Link className="underline" href="/register">
+              <Link className="underline" href="/Register">
                 Register
               </Link>
             </div>
@@ -74,5 +99,5 @@ export default function Component() {
         </Card>
       </div>
     </div>
-  </>;
+  );
 }

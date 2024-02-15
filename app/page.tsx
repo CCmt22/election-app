@@ -27,6 +27,7 @@ export default function Component() {
             Home
           </Link>
         </div>
+
         <div className="flex items-center gap-4">
           <Link
             className="inline-flex items-center gap-2 text-sm font-semibold bg-white text-black hover:bg-gray-200 dark:hover:bg-gray-800"
@@ -45,10 +46,10 @@ export default function Component() {
         </div>
       </header>
       <main className="flex-1 py-6 lg:py-12 xl:py-24">
-        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+        <div className="container grid items-center justify-center gap-2 px-2 text-center md:px-3 lg:gap-5">
           <div className="space-y-3">
             <h1 className="text-4xl font-bold text-red-800">
-              Indonesia Presidential Election Voting
+              INDONESIA PRESIDENTIAL ELECTION VOTING
             </h1>
           </div>
           <div className="container mx-auto my-6 px-4 md:my-12 md:px-6">
@@ -150,63 +151,6 @@ export default function Component() {
                         envisions a technologically advanced and socially
                         inclusive Indonesia
                       </p>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button className="rounded-full" variant="outline">
-                            Manifesto
-                            <ArrowDownIcon className="w-4 h-4 ml-2" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <ul className="text-sm text-left">
-                            <li>
-                              <b>National Unity and Stability:</b> Prabowo
-                              Subianto's manifesto emphasizes the importance of
-                              national unity and stability, pledging to work
-                              towards a cohesive Indonesia that celebrates its
-                              diversity while ensuring a stable political and
-                              economic environment.
-                            </li>
-                            <li>
-                              <b>Economic Prosperity:</b> The Advanced Indonesia
-                              Coalition candidate focuses on economic growth and
-                              prosperity. The manifesto outlines plans for job
-                              creation, attracting investments, and fostering
-                              entrepreneurship to boost the nation's economy.
-                            </li>
-                            <li>
-                              <b>Social Welfare Programs:</b> Mr. Prabowo
-                              promises comprehensive social welfare programs
-                              aimed at improving the well-being of citizens.
-                              This includes initiatives for healthcare
-                              accessibility, education reforms, and poverty
-                              alleviation measures.
-                            </li>
-                            <li>
-                              <b>Environmental Sustainability:</b> The manifesto
-                              highlights a commitment to environmental
-                              sustainability, advocating for responsible
-                              policies to address climate change, preserve
-                              natural resources, and promote eco-friendly
-                              practices.
-                            </li>
-                            <li>
-                              <b>Infrastructure Development:</b> Prioritizing
-                              infrastructure, the candidate promises strategic
-                              development projects to enhance connectivity,
-                              transportation, and overall infrastructure,
-                              contributing to regional and national progress.
-                            </li>
-                            <li>
-                              <b>Democratic Values:</b> Mr. Prabowo reaffirms a
-                              commitment to democratic values, ensuring the
-                              protection of individual rights, freedom of
-                              expression, and the democratic principles that
-                              underpin the nation's governance.
-                            </li>
-                          </ul>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
                     </div>
                   </div>
                 </CardContent>

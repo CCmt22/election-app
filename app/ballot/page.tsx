@@ -39,12 +39,14 @@ export default function Component() {
             alt="Candidate 1"
             className="rounded-full border overflow-hidden aspect-square object-cover object-center"
             height="200"
-            src="/placeholder.svg"
+            src="/ab.png"
             width="200"
           />
           <div className="flex flex-col items-center space-y-1">
-            <div className="text-xl font-medium">Sophia Williams</div>
-            <div className="text-sm text-center">Progressive Party</div>
+            <div className="text-xl font-medium">Anies Baswedan</div>
+            <div className="text-sm text-center">
+              Coalition of Change for Unity (KPP) Candidate
+            </div>
           </div>
           <div className="flex items-center space-x-2">
             <div className="form-check">
@@ -60,12 +62,14 @@ export default function Component() {
             alt="Candidate 2"
             className="rounded-full border overflow-hidden aspect-square object-cover object-center"
             height="200"
-            src="/placeholder.svg"
+            src="/gp.png"
             width="200"
           />
           <div className="flex flex-col items-center space-y-1">
-            <div className="text-xl font-medium">Noah Johnson</div>
-            <div className="text-sm text-center">Innovation Party</div>
+            <div className="text-xl font-medium">Ganjar Pranowo </div>
+            <div className="text-sm text-center">
+              Indonesian Democratic Party of Struggle (PDI-P) Candidate
+            </div>
           </div>
           <div className="flex items-center space-x-2">
             <div className="form-check">
@@ -81,11 +85,11 @@ export default function Component() {
             alt="Candidate 3"
             className="rounded-full border overflow-hidden aspect-square object-cover object-center"
             height="200"
-            src="/placeholder.svg"
+            src="/ps.png"
             width="200"
           />
           <div className="flex flex-col items-center space-y-1">
-            <div className="text-xl font-medium">Liam Garcia</div>
+            <div className="text-xl font-medium">Prabowo Subianto </div>
             <div className="text-sm text-center">Unity Party</div>
           </div>
           <div className="flex items-center space-x-2">
