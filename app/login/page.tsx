@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HomeIcon } from "../ballot/page";
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Component() {
   const [email, setEmail] = useState("");

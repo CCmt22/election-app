@@ -10,8 +10,18 @@
     "cssVariables": true,
     "prefix": ""
   },
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/ui/*"]
+    }
+  },
+
   "aliases": {
     "components": "@/components",
     "utils": "@/lib/utils"
   }
+
+
 }
