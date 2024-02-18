@@ -10,13 +10,17 @@ import { auth, firestore } from "../../firebase";
 import { setDoc, doc } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 import { format } from "path";
-//import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Component() {
+  //call method to add a user to the database, using the addVoter method
+
+  const router = useRouter();
+
   //Here I am using states so that they set the specific names
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: " ",
+    lastName: "",
     idNumber: "",
     email: "",
     password: "",
@@ -31,8 +35,6 @@ export default function Component() {
     password: "",
     confirmPassword: "",
   });
-
-  //const router = useRouter();
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -103,7 +105,7 @@ export default function Component() {
       email,
     });
 
-    //router.push("/login");
+    router.push("/ballot");
 
     // Proceed with registration logic if validation passes
 

@@ -5,13 +5,30 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
+import { signOut } from "firebase/auth";
 
 import { ToastContainer, toast } from "react-toastify"; //I added this to ensure that the success message would pop up once someone cast their vote
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link"; //This is the link used to link the home icon to the homepage
+import { auth } from "@/firebase";
 
 export default function Component() {
+  //call methods for voter from db
   const [voted, setVoted] = useState(false);
+
+  const router = useRouter();
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((e) => {
+        console.log("Logout catch", e.message);
+      });
+  };
 
   const handleVote = () => {
     // Perform the logic to submit the vote
@@ -41,6 +58,10 @@ export default function Component() {
         <Link href="/">
           <HomeIcon className="h-6 w-6 text-red-900" />
         </Link>
+
+        <button className="text-blue" onClick={logOut}>
+          LOGOUT
+        </button>
       </div>
       <div className="flex flex-col items-center space-y-2">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-red-900">
