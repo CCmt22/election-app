@@ -63,7 +63,9 @@ export default function Component() {
                     }}
                     width="480"
                   />
-
+                  <h1 className="text-2xl font-bold tracking-tighter uppercase md:text-4xl lg:text-2xl xl:text-4xl text-red-900">
+                    Manifesto
+                  </h1>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     He is a 54 year-old leader with a dynamic vision and a
                     wealth of administrative experience. Renowned for his prior
@@ -98,7 +100,9 @@ export default function Component() {
                     }}
                     width="480"
                   />
-
+                  <h1 className="text-2xl font-bold tracking-tighter uppercase md:text-4xl lg:text-2xl xl:text-4xl text-red-900">
+                    Manifesto
+                  </h1>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     He is a 53 year-old who brings a wealth of experience,
                     having served as the Governor of Central Java. Renowned for
@@ -131,7 +135,9 @@ export default function Component() {
                     }}
                     width="480"
                   />
-
+                  <h1 className="text-2xl font-bold tracking-tighter uppercase md:text-4xl lg:text-2xl xl:text-4xl text-red-900">
+                    Manifesto
+                  </h1>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     He is a 72-year-old seasoned leader, who brings a wealth of
                     experience, having served as a military general, defense
