@@ -13,19 +13,41 @@ import { Button } from "@/components/ui/button";
 import { HomeIcon } from "../ballot/page";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function Component() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const isLoginDisabled = email.trim() === "" || password.trim() === "";
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setError(""); // Clear previous errors when email is changed
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setError(""); // Clear previous errors when password is changed
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    // Perform data validation
+    if (!email.trim() || !password.trim()) {
+      setError("Email and password are required.");
+      return;
+    }
+
+    try {
+      // Call your authentication function here
+      await signInWithEmailAndPassword(auth, email, password);
+      //login should route them to the ballot page
+    } catch (error) {
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
@@ -37,14 +59,15 @@ export default function Component() {
       }}
     >
       <div className="h-screen flex items-center justify-center">
-        <div className="absolute top-4 right-4">
-          <Link href="/">
-            <HomeIcon className="h-6 w-6 text-red-900" />
-          </Link>
-        </div>
-        <Card className="w-full max-w-md p-6 bg-slate-200">
+        <Card className="w-full max-w-2xl p-8 bg-slate-200 relative">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold">Login</CardTitle>
+            <div className="absolute top-4 left-4">
+              <Link href="/">
+                <HomeIcon className="h-6 w-6 text-black-900" />
+              </Link>
+            </div>
+            <CardTitle className="text-4xl font-bold">Login</CardTitle>
+
             <CardDescription>
               Enter your email below to login to your account
             </CardDescription>
@@ -78,21 +101,21 @@ export default function Component() {
                   onChange={handlePasswordChange}
                 />
               </div>
+              {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
               <Button
                 className={`w-full ${
                   isLoginDisabled ? "bg-gray-500" : "bg-black"
                 } text-white`}
                 type="submit"
                 disabled={isLoginDisabled}
+                onClick={handleLogin}
               >
-                <Link className="underline" href="/ballot">
-                  Login
-                </Link>
+                Login
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
               Don't have an account?
-              <Link className="underline" href="/Register">
+              <Link className="underline" href="/register">
                 Register
               </Link>
             </div>

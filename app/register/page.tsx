@@ -1,16 +1,22 @@
 "use client"; //this needs to be there
 import Link from "next/link";
-import { useState } from "react";
+import { use, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { HomeIcon } from "../ballot/page";
 import { createUserWithEmailAndPassword } from "firebase/auth"; //for login
+import { auth, firestore } from "../../firebase";
+import { setDoc, doc } from "firebase/firestore";
+import firebase from "firebase/compat/app";
+import { format } from "path";
+//import { useRouter } from "next/router";
 
 export default function Component() {
+  //Here I am using states so that they set the specific names
   const [formData, setFormData] = useState({
-    firstName: "First Name",
-    lastName: " Last Name",
+    firstName: "",
+    lastName: " ",
     idNumber: "",
     email: "",
     password: "",
@@ -25,6 +31,8 @@ export default function Component() {
     password: "",
     confirmPassword: "",
   });
+
+  //const router = useRouter();
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -59,7 +67,7 @@ export default function Component() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setShowErrors(true);
@@ -72,8 +80,33 @@ export default function Component() {
       });
       return;
     }
+    //Firebase authentication
+    await createUserWithEmailAndPassword(
+      auth,
+      formData.email,
+      formData.password
+    );
+
+    const user = auth.currentUser;
+    const uid = user.uid;
+
+    const name = formData.firstName;
+    const surname = formData.lastName;
+    const idNumber = formData.idNumber;
+    const email = formData.email;
+
+    const userRef = doc(firestore, "users", uid);
+    await setDoc(userRef, {
+      name,
+      surname,
+      idNumber,
+      email,
+    });
+
+    //router.push("/login");
 
     // Proceed with registration logic if validation passes
+
     console.log("Form submitted successfully!");
   };
 
