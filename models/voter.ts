@@ -1,3 +1,4 @@
+//Here I am defining the Voter object
 export interface Voter {
     
     userId: string;
@@ -5,6 +6,8 @@ export interface Voter {
     lastName: string;
     idNumber: string;
     email: string;
+    password: string;
+    hasVoted: boolean;
    
 
   }

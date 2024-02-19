@@ -1,6 +1,6 @@
 
-import { auth, firestore } from "@/firebase"; 
-import { collection, doc, getDoc, getDocs, query, where, addDoc, updateDoc, deleteDoc, setDoc, Firestore } from "firebase/firestore";
+import { auth, firestore } from "@/firebase";  //Here I am importing the 'auth' and 'firestore' from the Firebase module in the "@/firebase" directory.
+import { collection, doc, getDoc, getDocs, query, where, addDoc, updateDoc, deleteDoc, setDoc, Firestore } from "firebase/firestore"; // Here I am importing the Firestore-related functions and types from the Firebase Firestore module.
 import { Vote } from "@/models/vote"; import { Voter } from "@/models/voter";
  
  

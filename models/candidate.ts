@@ -1,3 +1,4 @@
+//Here I am defining the Candidate object
 export interface Candidate {
 
     id: string;

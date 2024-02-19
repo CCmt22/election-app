@@ -11,6 +11,8 @@ import { setDoc, doc } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 import { format } from "path";
 import { useRouter } from "next/navigation";
+import { Voter } from "@/models/voter";
+import database from "@/app/database";
 
 export default function Component() {
   //call method to add a user to the database, using the addVoter method
@@ -96,6 +98,7 @@ export default function Component() {
     const surname = formData.lastName;
     const idNumber = formData.idNumber;
     const email = formData.email;
+    const password = formData.password;
 
     const userRef = doc(firestore, "users", uid);
     await setDoc(userRef, {
@@ -105,10 +108,20 @@ export default function Component() {
       email,
     });
 
+    const newVoter: Voter = {
+      userId: uid,
+      firstName: name,
+      lastName: surname,
+      email: email,
+      password: password,
+      hasVoted: false,
+      idNumber: "",
+    };
+
+    await database.addVoter(newVoter);
     router.push("/ballot");
 
     // Proceed with registration logic if validation passes
-
     console.log("Form submitted successfully!");
   };
 
