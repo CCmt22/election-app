@@ -58,11 +58,13 @@ export default function Component() {
         <Link href="/">
           <HomeIcon className="h-6 w-6 text-red-900" />
         </Link>
-
-        <button className="text-red top-4 right-4" onClick={logOut}>
-          LOGOUT
-        </button>
       </div>
+      <button
+        className="bg-red-800 text-white p-2 rounded-md absolute top-4 right-4"
+        onClick={logOut}
+      >
+        LOGOUT
+      </button>
       <div className="flex flex-col items-center space-y-2">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-red-900">
           2024 Election
@@ -74,14 +76,13 @@ export default function Component() {
           <h3 className="text-xl font-bold text-gray-500">How to Vote</h3>
           <ol className="list-decimal list-inside space-y-2 text-gray-500 md:text-base/relaxed dark:text-gray-400">
             <li>
-              Select the candidate of your choice by checking the box below
+              Select the candidate of your choice by checking the circle below
               their name.
             </li>
             <li>Click the "Cast Vote" button to submit your vote.</li>
             <li>
-              {" "}
               If you would like to abstain, click the "Abstain" button to submit
-              your vote.{" "}
+              your vote.
             </li>
           </ol>
         </div>
