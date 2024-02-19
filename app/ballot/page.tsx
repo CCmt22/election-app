@@ -137,7 +137,9 @@ export default function Component() {
           <div className="flex items-center space-x-2">
             <div className="form-check">
               <AlertDialog>
-                <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+                <AlertDialogTrigger className="bg-red-800 text-white p-2 rounded-md ">
+                  Cast Vote
+                </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
@@ -177,7 +179,9 @@ export default function Component() {
           <div className="flex items-center space-x-2">
             <div className="form-check">
               <AlertDialog>
-                <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+                <AlertDialogTrigger className="bg-red-800 text-white p-2 rounded-md ">
+                  Cast Vote
+                </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
@@ -221,7 +225,9 @@ export default function Component() {
           <div className="flex items-center space-x-2">
             <div className="form-check">
               <AlertDialog>
-                <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+                <AlertDialogTrigger className="bg-red-800 text-white p-2 rounded-md ">
+                  Cast Vote
+                </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
@@ -248,7 +254,9 @@ export default function Component() {
 
       <div className="mx-auto max-w-3xl space-y-4">
         <AlertDialog>
-          <AlertDialogTrigger>Abstain Vote</AlertDialogTrigger>
+          <AlertDialogTrigger className="bg-red-800 text-white p-2 rounded-md ">
+            Abstain Vote
+          </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
