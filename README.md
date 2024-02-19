@@ -4,29 +4,40 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-## Database Layer
+## Overview : Indonesia eVoting platform
 
-## Connection to Database
+This platform has been created to allow users to register, login and cast a vote for their desired candidate in the 2024 presidential elections.
+Requirements
 
-## Coding structure
+- Visual studio code
+- Chrome
+- Next/font
 
-## Data Validation, Controls & Security
+## Project structure and Stack: This project makes use of the following structure:
 
-## Functionality
+- Typescript
+- Next.js
+- React
+- Firebase Firestore
 
-## Works correctly:
+## How to run: To run the project locally, follow the steps below:
 
-## Polling results
+1. Clone the repository on your local machine
+2. Install the dependencies- npm install
+3. Configure firebase- this is done by first creating a firebase project in Firebase Console and then taking the Firebase configuration and placing it in the project’s Firebase Initialization file (‘firebase.ts’)
+4. Run the application- npm run dev. From this command, you will be given a link that you can use to navigate to ‘http://localhost:3000’
 
-## Guest & voter access
+## Usability
 
-## User Interface
+- Register: users can register making use of their information in order to be eligible to vote
+- Log in: registered users are able to log in using their email and password credentials so that they can proceed to the voting page
+- Cast votes: users are able to cast their votes for their desired presidential candidates, or they are able to abstain from voting
+- Results: the votes made are recorded and used to update the current results figures
 
-## Ease of Navigation
+## Navigation
 
-## Sophistication & complexity- Verification of Users & Multiple votes at the same time work correctly
-
-## Overall Evidence of effort
+Upon arrival on the page, the user can see the different presidential candidates and their respective manifestos as a guest on the platform. Additionally, they can view the current results of the election before deciding whether they would like to register to cast their own vote.
+If the user decided to register, they are prompted by the register button to a different webpage where they can fill in their required details. From there, once they have successfully registered, they are redirected to the ballot page where they are able to cast their vote. They are given the option to either vote for a specific candidate or to abstain. Once they have done so, they are able to logout, or return to the homepage. The user is not allowed to cast more than one vote. Similarly, if a user already has an account, they are able to make use of the login function so that they can go and cast their vote on the ballot page.
 
 ## Version Control
 
