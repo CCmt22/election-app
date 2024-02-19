@@ -2,7 +2,7 @@
 // @see https://v0.dev/t/wFHPhR5cCWu
 // Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -13,12 +13,65 @@ import { ToastContainer, toast } from "react-toastify"; //I added this to ensure
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link"; //This is the link used to link the home icon to the homepage
 import { auth } from "@/firebase";
+import { Voter } from "@/models/voter";
+import { Vote } from "@/models/vote";
+import database from "@/app/database";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function Component() {
   //call methods for voter from db
-  const [voted, setVoted] = useState(false);
-
+  const [voter, setVoter] = useState<any>();
+  const [user, setUser] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        const userID = user.uid;
+        ``;
+        const promisedVoter: Promise<Voter | undefined> =
+          database.getVoter(userID);
+
+        promisedVoter.then((voter) => {
+          if (voter) {
+            setVoter(voter);
+          }
+        });
+      }
+    });
+  }, []);
+
+  const handleVote = async (candId) => {
+    if (voter && !voter.hasVoted) {
+      const newVote: Vote = {
+        vote_id: `v_${Math.floor(100000 + Math.random() * 900000)}`,
+        voter: voter,
+        candId: candId,
+      };
+
+      console.log(newVote);
+
+      await database.addVote(newVote);
+
+      const updatedVoter: Voter = { ...voter, hasVoted: true };
+      await database.updateVoter(updateVoter);
+
+      router.push("/");
+    } else {
+      alert("Sorry, you have already voted!");
+    }
+  };
 
   const logOut = () => {
     signOut(auth)
@@ -28,28 +81,6 @@ export default function Component() {
       .catch((e) => {
         console.log("Logout catch", e.message);
       });
-  };
-
-  const handleVote = () => {
-    // Perform the logic to submit the vote
-    // For now, let's just set voted to true
-    setVoted(true);
-
-    // Display a success toast. This allows the voter to know that their vote has been successfully cast
-    toast.success("Vote successfully made!", {
-      position: "top-right",
-      autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  };
-
-  const handleReturnToHomepage = () => {
-    // Perform any necessary actions before returning to the homepage
-    // For now, you can redirect to the homepage
-    window.location.href = "/";
   };
 
   return (
@@ -105,15 +136,27 @@ export default function Component() {
           </div>
           <div className="flex items-center space-x-2">
             <div className="form-check">
-              <Input
-                id="candidate1"
-                name="candidate"
-                type="radio"
-                disabled={voted} //this ensures that once the vote has been cast, the radio buttons are disabled
-              />
-              <label className="ml-2" htmlFor="candidate1">
-                {voted ? "Voted" : "Vote"}
-              </label>
+              <AlertDialog>
+                <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently render
+                      a cast vote on your account and you will not be allowed to
+                      vote again.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>
+                      onClick={() => handleVote("0")}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>
@@ -133,15 +176,27 @@ export default function Component() {
           </div>
           <div className="flex items-center space-x-2">
             <div className="form-check">
-              <Input
-                id="candidate1"
-                name="candidate"
-                type="radio"
-                disabled={voted}
-              />
-              <label className="ml-2" htmlFor="candidate1">
-                {voted ? "Voted" : "Vote"}
-              </label>
+              <AlertDialog>
+                <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently render
+                      a cast vote on your account and you will not be allowed to
+                      vote again.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>
+                      onClick={() => handleVote("1")}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>
@@ -165,50 +220,53 @@ export default function Component() {
           </div>
           <div className="flex items-center space-x-2">
             <div className="form-check">
-              <Input
-                id="candidate1"
-                name="candidate"
-                type="radio"
-                disabled={voted}
-              />
-              <label className="ml-2" htmlFor="candidate1">
-                {voted ? "Voted" : "Vote"}
-              </label>
+              <AlertDialog>
+                <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently render
+                      a cast vote on your account and you will not be allowed to
+                      vote again.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>
+                      onClick={() => handleVote("2")}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>
       </div>
 
       <div className="mx-auto max-w-3xl space-y-4">
-        {voted ? (
-          <Button
-            onClick={handleReturnToHomepage} //this is there so that once the user has abstained from their vote, they can return to the homepage. It is also there because the other buttons on the page will be disabled once the vote has been cast.
-            className="w-full bg-blue-500 text-white"
-          >
-            Return to Homepage
-          </Button>
-        ) : (
-          <Button onClick={handleVote} className="w-full bg-red-900 text-white">
-            Abstain Vote
-          </Button> //this will show the user that where to cast their abstained vote. this button will need to be able to record the abstained vote and send it to the database.
-        )}
+        <AlertDialog>
+          <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently render a
+                cast vote on your account and you will not be allowed to vote
+                again.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>
+                onClick={() => handleVote("3")}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
-
-      <div className="mx-auto max-w-3xl space-y-4">
-        {voted ? (
-          <Button
-            onClick={handleReturnToHomepage} //this is there so that once the user has voted, they can return to the homepage. it is also there because the other buttons on the page will be disabled once the vote has been cast.
-            className="w-full bg-blue-500 text-white"
-          >
-            Return to Homepage
-          </Button>
-        ) : (
-          <Button onClick={handleVote} className="w-full bg-red-900 text-white">
-            Cast Vote
-          </Button> //this will show the user that where to cast their vote. this button will need to be able to record the vote and send it to the database.
-        )}
-      </div>
-      <ToastContainer />
     </div>
   );
 }

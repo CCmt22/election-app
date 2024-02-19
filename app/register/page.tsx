@@ -1,4 +1,4 @@
-"use client"; //this needs to be there
+"use client"; //this needs to be there as it allows you to be able to use useState and useEffect
 import Link from "next/link";
 import { use, useState } from "react";
 import { Label } from "@/components/ui/label";
@@ -19,6 +19,7 @@ export default function Component() {
 
   const router = useRouter();
 
+
   //Here I am using states so that they set the specific names
   const [formData, setFormData] = useState({
     firstName: "",
@@ -36,16 +37,18 @@ export default function Component() {
     email: "",
     password: "",
     confirmPassword: "",
-  });
+  }); //This part is all for the logic of the form.
 
-  const [showErrors, setShowErrors] = useState(false);
+  //This section below is for error handling
+  const [showErrors, setShowErrors] = useState(false); //This is the code that is in place to state whether to show errors or not
 
+  //The code below is used to determine if the registration button should be disabled based on form data and errors
   const isRegistrationDisabled =
-    Object.values(formData).some((value) => value.trim() === "") ||
-    Object.values(errors).some((error) => error !== "") ||
-    formData.idNumber.length < 12 ||
-    formData.password !== formData.confirmPassword;
-
+    Object.values(formData).some((value) => value.trim() === "") || //Here, this code is checking if any form field is empty (utilising a trimmed value)
+    Object.values(errors).some((error) => error !== "") || //Here, this code is checking if there are any errors in the errors object.
+    formData.idNumber.length < 12 || //This code is to check if the idNumber length is less than 12 characters
+    formData.password !== formData.confirmPassword; //This code ensures that we check if the password and confirm password match.
+  //This code handles the change in form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
 

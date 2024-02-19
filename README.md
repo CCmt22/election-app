@@ -16,9 +16,9 @@ First, run the development server:
 
 ## Works correctly:
 
-    ## Polling results
+## Polling results
 
-    ## Guest & voter access
+## Guest & voter access
 
 ## User Interface
 

@@ -13,12 +13,15 @@ import { Button } from "@/components/ui/button";
 import { HomeIcon } from "../ballot/page";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, firestore } from "../../firebase";
+import { useRouter } from "next/navigation";
 
 export default function Component() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
+  const [emailError, setEmailError] = useState("");
 
   const isLoginDisabled = email.trim() === "" || password.trim() === "";
 
@@ -48,6 +51,8 @@ export default function Component() {
     } catch (error) {
       setError("Invalid email or password. Please try again.");
     }
+    console.log("Login with:", user, email);
+    router.push("/party"); //if the password and email has been entered then push to the ballot page
   };
 
   return (
@@ -81,8 +86,13 @@ export default function Component() {
                   placeholder="m@example.com"
                   required
                   type="email"
+                  value={email}
                   onChange={handleEmailChange}
-                />
+                />{" "}
+                {emailError && (
+                  <p className="text-red-500 text-sm">{emailError}</p>
+                )}
+                {/*//This is the code that we use to add the email and password and remove the email*/}
               </div>
               <div className="space-y-2">
                 <div className="flex items-center">

@@ -32,7 +32,27 @@ class Database {
             console.error('Error adding voter document: ', error);
             throw error; // Rethrow the error to handle it upstream
         }
+
+
     }
+
+    async updateVoter(voter: Voter): Promise<void> {
+        // Create a reference to a new document with the specified ID
+        const voterRef = doc(collection(firestore, 'voters'), voter.userId);
+        console.log('voterRef', voterRef);
+ 
+        try {
+            // Set the data of the document
+            await updateDoc(voterRef, {hasVoted: true });
+            console.log('Voter document added successfully!');
+        } catch (error) {
+            console.error('Error adding voter document: ', error);
+            throw error; // Rethrow the error to handle it upstream
+        }
+
+
+    }
+    
  
     // async getVoter method
  
