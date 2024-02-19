@@ -54,12 +54,12 @@ export default function Component() {
 
   return (
     <div className="w-full py-6 space-y-4 bg-red-100">
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 left-4">
         <Link href="/">
           <HomeIcon className="h-6 w-6 text-red-900" />
         </Link>
 
-        <button className="text-blue" onClick={logOut}>
+        <button className="text-red top-4 right-4" onClick={logOut}>
           LOGOUT
         </button>
       </div>
@@ -78,6 +78,11 @@ export default function Component() {
               their name.
             </li>
             <li>Click the "Cast Vote" button to submit your vote.</li>
+            <li>
+              {" "}
+              If you would like to abstain, click the "Abstain" button to submit
+              your vote.{" "}
+            </li>
           </ol>
         </div>
       </div>
@@ -172,6 +177,22 @@ export default function Component() {
           </div>
         </div>
       </div>
+
+      <div className="mx-auto max-w-3xl space-y-4">
+        {voted ? (
+          <Button
+            onClick={handleReturnToHomepage} //this is there so that once the user has abstained from their vote, they can return to the homepage. It is also there because the other buttons on the page will be disabled once the vote has been cast.
+            className="w-full bg-blue-500 text-white"
+          >
+            Return to Homepage
+          </Button>
+        ) : (
+          <Button onClick={handleVote} className="w-full bg-red-900 text-white">
+            Abstain Vote
+          </Button> //this will show the user that where to cast their abstained vote. this button will need to be able to record the abstained vote and send it to the database.
+        )}
+      </div>
+
       <div className="mx-auto max-w-3xl space-y-4">
         {voted ? (
           <Button
