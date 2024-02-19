@@ -1,8 +1,39 @@
 import Link from "next/link";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import database from "@/app/database";
+import { useEffect, useState } from "react";
+import { Vote } from "@/models/vote";
 
 export default function Component() {
+  const [votes, setVotes] = useState<Vote[]>([]);
+
+  useEffect(() => {
+    fetchVotes();
+  }, []);
+
+  const getVotesByCand = () => {
+    const candIds: { [key: string]: number } = {};
+
+    for (const { cand_id } of votes) {
+      candIds[cand_id] = (candIds[cand_id] || 0) + 1;
+    }
+
+    return candIds;
+  };
+
+  const fetchVotes = async () => {
+    const votes = await database.getVotes();
+    setVotes(votes);
+  };
+
+  const getTotalVotes = () => {
+    if (votes) {
+      return votes.length;
+    }
+    0;
+  };
+
   return (
     <div
       className="flex flex-col min-h-screen bg-cover bg-center"
@@ -168,8 +199,18 @@ export default function Component() {
                     <CardTitle>ANIES BASWEDAN</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold">Votes: 500</span>
+                    <div
+                      className="flex items-center justify-between"
+                      style={{
+                        width: `${Math.round(
+                          (getVotesByCand()[0] / votes.length) * 100
+                        )}%`,
+                      }}
+                    >
+                      {Math.round((getVotesByCand()[0] / votes.length) * 100)} %
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {getVotesByCand()[0]} voters
+                      </p>
                     </div>
                     <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">
                       <div
@@ -188,8 +229,18 @@ export default function Component() {
                     <CardTitle>GANJAR PRANOWO</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold">Votes: 700</span>
+                    <div
+                      className="flex items-center justify-between "
+                      style={{
+                        width: `${Math.round(
+                          (getVotesByCand()[1] / votes.length) * 100
+                        )}%`,
+                      }}
+                    >
+                      {Math.round((getVotesByCand()[1] / votes.length) * 100)} %
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {getVotesByParty()[1]} voters
+                      </p>
                     </div>
                     <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">
                       <div className="h-full bg-blue-500 dark:bg-blue-400 rounded-full" />
@@ -205,8 +256,46 @@ export default function Component() {
                     <CardTitle>PRABOWO SUBIANTO</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold">Votes: 400</span>
+                    <div
+                      className="flex items-center justify-between"
+                      style={{
+                        width: `${Math.round(
+                          (getVotesByCand()[2] / votes.length) * 100
+                        )}%`,
+                      }}
+                    >
+                      {Math.round((getVotesByCand()[2] / votes.length) * 100)} %
+                      <p className="text-center text-gray-500 dark:text-gray-400 mt-8">
+                        {" "}
+                        votes:{" "}
+                      </p>
+                    </div>
+                    <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">
+                      <div className="h-full bg-yellow-500 dark:bg-yellow-400 rounded-full" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="mx-auto flex flex-col w-full items-center justify-center p-4 sm:p-8">
+                <Card className="w-full max-w-md rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 hover:bg-gray-200 transition duration-300">
+                  <CardHeader>
+                    <CardTitle>ABSTAINED</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div
+                      className="flex items-center justify-between"
+                      style={{
+                        width: `${Math.round(
+                          (getVotesByCand()[3] / votes.length) * 100
+                        )}%`,
+                      }}
+                    >
+                      {Math.round((getVotesByCand()[3] / votes.length) * 100)} %
+                      <p className="text-center text-gray-500 dark:text-gray-400 mt-8">
+                        {" "}
+                        votes:{" "}
+                      </p>
                     </div>
                     <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">
                       <div className="h-full bg-yellow-500 dark:bg-yellow-400 rounded-full" />
