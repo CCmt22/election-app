@@ -37,7 +37,7 @@ export default function Component() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    const user = auth.currentUser;
     // Perform data validation
     if (!email.trim() || !password.trim()) {
       setError("Email and password are required.");
@@ -48,11 +48,11 @@ export default function Component() {
       // Call your authentication function here
       await signInWithEmailAndPassword(auth, email, password);
       //login should route them to the ballot page
+      console.log("Login with:", user, email);
+      router.push("/ballot"); //if the password and email has been entered then push to the ballot page
     } catch (error) {
       setError("Invalid email or password. Please try again.");
     }
-    console.log("Login with:", user, email);
-    router.push("/party"); //if the password and email has been entered then push to the ballot page
   };
 
   return (

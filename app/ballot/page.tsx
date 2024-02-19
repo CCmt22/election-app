@@ -250,30 +250,30 @@ export default function Component() {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="mx-auto max-w-3xl space-y-4">
-        <AlertDialog>
-          <AlertDialogTrigger className="bg-red-800 text-white p-2 rounded-md ">
-            Abstain Vote
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently render a
-                cast vote on your account and you will not be allowed to vote
-                again.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={() => handleVote("3")}>
-                Continue
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className="mx-auto max-w-3xl space-y-4">
+          <AlertDialog>
+            <AlertDialogTrigger className="bg-red-800 text-white p-2 rounded-md ">
+              Abstain Vote
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently render a
+                  cast vote on your account and you will not be allowed to vote
+                  again.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={() => handleVote("3")}>
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </div>
     </div>
   );

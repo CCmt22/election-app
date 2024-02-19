@@ -16,8 +16,8 @@ export default function Component() {
   const getVotesByCand = () => {
     const candIds: { [key: string]: number } = {};
 
-    for (const { cand_id } of votes) {
-      candIds[cand_id] = (candIds[cand_id] || 0) + 1;
+    for (const { candId } of votes) {
+      candIds[candId] = (candIds[candId] || 0) + 1;
     }
 
     return candIds;
@@ -231,7 +231,7 @@ export default function Component() {
                   </CardHeader>
                   <CardContent>
                     <div
-                      className="flex items-center justify-between "
+                      className="flex items-center justify-between"
                       style={{
                         width: `${Math.round(
                           (getVotesByCand()[1] / votes.length) * 100
@@ -266,9 +266,8 @@ export default function Component() {
                       }}
                     >
                       {Math.round((getVotesByCand()[2] / votes.length) * 100)} %
-                      <p className="text-center text-gray-500 dark:text-gray-400 mt-8">
-                        {" "}
-                        votes:{" "}
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {getVotesByCand()[2]} voters
                       </p>
                     </div>
                     <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">
@@ -293,9 +292,8 @@ export default function Component() {
                       }}
                     >
                       {Math.round((getVotesByCand()[3] / votes.length) * 100)} %
-                      <p className="text-center text-gray-500 dark:text-gray-400 mt-8">
-                        {" "}
-                        votes:{" "}
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {getVotesByCand()[3]} voters
                       </p>
                     </div>
                     <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">

@@ -19,7 +19,6 @@ export default function Component() {
 
   const router = useRouter();
 
-
   //Here I am using states so that they set the specific names
   const [formData, setFormData] = useState({
     firstName: "",
@@ -44,11 +43,17 @@ export default function Component() {
 
   //The code below is used to determine if the registration button should be disabled based on form data and errors
   const isRegistrationDisabled =
-    Object.values(formData).some((value) => value.trim() === "") || //Here, this code is checking if any form field is empty (utilising a trimmed value)
-    Object.values(errors).some((error) => error !== "") || //Here, this code is checking if there are any errors in the errors object.
+    // Object.values(formData).some((value) => value.trim() === "") || //Here, this code is checking if any form field is empty (utilising a trimmed value)
+    //Object.values(errors).some((error) => error !== "") || //Here, this code is checking if there are any errors in the errors object.
+    formData.firstName.trim() == "" ||
+    formData.lastName.trim() == "" ||
+    formData.email.trim() === "" ||
+    formData.confirmPassword.trim() == "" ||
     formData.idNumber.length < 12 || //This code is to check if the idNumber length is less than 12 characters
     formData.password !== formData.confirmPassword; //This code ensures that we check if the password and confirm password match.
   //This code handles the change in form fields
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -267,8 +272,15 @@ export default function Component() {
                   )}
                 </div>
               </div>
+              {errors && (
+                <p className="text-red-500 text-sm mt-2">{errors.email}</p>
+              )}
               <Button
-                className="w-full bg-black text-white py-2 rounded-md"
+                className={`w-full ${
+                  isRegistrationDisabled ? "bg-gray-500" : "bg-black"
+                } text-white`}
+                type="submit"
+                disabled={isRegistrationDisabled}
                 onClick={handleSubmit}
               >
                 Register
