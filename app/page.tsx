@@ -239,7 +239,7 @@ export default function Component() {
                     >
                       {Math.round((getVotesByCand()[1] / votes.length) * 100)} %
                       <p className="text-gray-500 dark:text-gray-400">
-                        {getVotesByParty()[1]} voters
+                        {getVotesByCand()[1]} voters
                       </p>
                     </div>
                     <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded-full mt-2">

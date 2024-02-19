@@ -65,7 +65,7 @@ export default function Component() {
       await database.addVote(newVote);
 
       const updatedVoter: Voter = { ...voter, hasVoted: true };
-      await database.updateVoter(updateVoter);
+      await database.updateVoter(updatedVoter);
 
       router.push("/");
     } else {
@@ -151,8 +151,8 @@ export default function Component() {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>
-                      onClick={() => handleVote("0")}
+                    <AlertDialogAction onClick={() => handleVote("0")}>
+                      Continue
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -191,8 +191,8 @@ export default function Component() {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>
-                      onClick={() => handleVote("1")}
+                    <AlertDialogAction onClick={() => handleVote("1")}>
+                      Continue
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -235,8 +235,8 @@ export default function Component() {
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>
-                      onClick={() => handleVote("2")}
+                    <AlertDialogAction onClick={() => handleVote("2")}>
+                      Continue
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -248,7 +248,7 @@ export default function Component() {
 
       <div className="mx-auto max-w-3xl space-y-4">
         <AlertDialog>
-          <AlertDialogTrigger>Cast Vote</AlertDialogTrigger>
+          <AlertDialogTrigger>Abstain Vote</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -260,8 +260,8 @@ export default function Component() {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction>
-                onClick={() => handleVote("3")}
+              <AlertDialogAction onClick={() => handleVote("3")}>
+                Continue
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
