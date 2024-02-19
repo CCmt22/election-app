@@ -1,7 +1,5 @@
-//change the db to firestore
 
- 
-import { app, firestore } from "./firebase"; 
+import { auth, firestore } from "@/firebase"; 
 import { collection, doc, getDoc, getDocs, query, where, addDoc, updateDoc, deleteDoc, setDoc, Firestore } from "firebase/firestore";
 import { Vote } from "@/models/vote"; import { Voter } from "@/models/voter";
  
