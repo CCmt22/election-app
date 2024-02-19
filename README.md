@@ -4,6 +4,32 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
+## Database Layer
+
+## Connection to Database
+
+## Coding structure
+
+## Data Validation, Controls & Security
+
+## Functionality
+
+## Works correctly:
+
+    ## Polling results
+
+    ## Guest & voter access
+
+## User Interface
+
+## Ease of Navigation
+
+## Sophistication & complexity- Verification of Users & Multiple votes at the same time work correctly
+
+## Overall Evidence of effort
+
+## Version Control
+
 ```bash
 npm run dev
 # or
